@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
   Card,
+  CardContent,
   CircularProgress,
   Divider,
   Grid,
-  IconButton,
   Snackbar,
   SnackbarContent,
   Tooltip,
@@ -29,25 +28,27 @@ function HeroSection() {
   const navigate = useNavigate();
   const [isLording, setIsLording] = useState(false);
 
-  console.log(isLording, "products");
-
+  // ✅ Cart handler with localStorage support
   const cartHandler = (product) => {
     const isExist = cartList.find((cart) => cart.id === product.id);
 
     if (!isExist) {
-      setcartList((prev) => [...prev, product]);
+      const updatedCart = [...cartList, product];
+      setcartList(updatedCart);
+      localStorage.setItem("cartList", JSON.stringify(updatedCart)); // save in localStorage
     } else {
       setOpenAlert(true);
     }
   };
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpenAlert(false);
   };
 
+  // ✅ Fetch products
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -65,6 +66,10 @@ function HeroSection() {
       }
     };
     fetchData();
+
+    // ✅ Load cartList from localStorage
+    const savedCart = JSON.parse(localStorage.getItem("cartList")) || [];
+    setcartList(savedCart);
   }, []);
 
   return (
@@ -72,7 +77,7 @@ function HeroSection() {
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={openAlert}
-        autoHideDuration={6000}
+        autoHideDuration={3000}
         onClose={handleClose}
       >
         <SnackbarContent
@@ -93,14 +98,44 @@ function HeroSection() {
               </Box>
             </Box>
           }
-        ></SnackbarContent>
+        />
       </Snackbar>
-      <Autocomplete className="mt-5 ms-4"
-        disablePortal
-        options={[]}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Movie" />}
-      />
+
+      {/* 🔍 Search Bar (Autocomplete) */}
+      <Autocomplete
+  className="my-5 ms-4"
+  disablePortal
+  options={products.map((p) => p.title)} // API product titles
+  sx={{ width: 300 }}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      label="Search Product"
+      sx={{
+        "& .MuiOutlinedInput-root": {
+          "& fieldset": {
+            borderColor: "green", // Default outline color
+          },
+          "&:hover fieldset": {
+            borderColor: "darkgreen", // On hover
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "green", // On focus
+            borderWidth: 2,
+          },
+        },
+        "& .MuiInputLabel-root": {
+          color: "green", // Label color
+        },
+        "& .MuiInputLabel-root.Mui-focused": {
+          color: "darkgreen", // Label color on focus
+        },
+      }}
+    />
+  )}
+/>
+
+
       {isLording ? (
         <Box className="text-center mt-5">
           <CircularProgress color="secondary" />
@@ -110,65 +145,121 @@ function HeroSection() {
           <Grid container className="container text-center">
             {products?.map((product, index) => {
               return (
-                <Grid item xs={12} sm={6} md={4} xl={3} mb={3}>
+                <Grid item xs={12} sm={6} md={4} xl={3} mb={3} key={index}>
                   <Card
-                    key={index}
-                    className="card-container my-5   "
-                    sx={{ padding: "1px", width: "300px" }}
+                    sx={{
+                      width: 300,
+                      borderRadius: "16px",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                      border: "1px solid #e0e0e0",
+                      overflow: "hidden",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      "&:hover": {
+                        transform: "translateY(-6px)",
+                        boxShadow: "0 8px 25px rgba(0, 128, 0, 0.2)", // greenish shadow
+                      },
+                    }}
                   >
+                    {/* Image Section */}
                     <Box
-                      className="text-center"
-                      sx={{ cursor: "pointer", margin: "15px" }}
+                      sx={{
+                        backgroundColor: "#f0fdf4", // light green tint
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: 180,
+                        p: 2,
+                      }}
                     >
                       <img
-                        style={{ minHeight: "120px", maxHeight: "120px" }}
-                        className="product-img mb-5 "
-                        width="100px"
                         src={product.image}
                         alt="product-img"
+                        style={{
+                          maxHeight: "100%",
+                          maxWidth: "100%",
+                          objectFit: "contain",
+                        }}
                       />
+                    </Box>
+
+                    {/* Content */}
+                    <CardContent sx={{ textAlign: "center" }}>
                       <Tooltip title={product?.title} placement="top">
                         <Typography
-                          className="my-3 text-secondary"
                           variant="h6"
+                          sx={{
+                            fontWeight: 600,
+                            color: "#2e7d32", // dark green
+                            mb: 1,
+                          }}
                         >
                           {product?.title?.length >= 22
                             ? `${product?.title?.slice(0, 18)}...`
                             : product?.title}
                         </Typography>
-                        <Typography variant="h5">{product.price}</Typography>
                       </Tooltip>
+
+                      <Typography
+                        variant="h5"
+                        sx={{ color: "#1b5e20", fontWeight: "bold", mb: 1 }}
+                      >
+                        ${product.price}
+                      </Typography>
+
                       <Divider
-                        sx={{ borderColor: "black" }}
-                        variant="fullWidth"
+                        sx={{ borderColor: "rgba(0,128,0,0.3)", my: 1 }}
                       />
-                      <Box className="d-flex justify-content-between mx-4">
+
+                      {/* Action Buttons */}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-around",
+                          mt: 2,
+                        }}
+                      >
                         <Tooltip title="Product Details">
                           <VisibilityIcon
-                            className=" my-3 fs-2"
-                            onClick={() => {
-                              navigate(`/ProductDetails/${product?.id}`);
+                            sx={{
+                              cursor: "pointer",
+                              color: "#2e7d32",
+                              "&:hover": { color: "#1b5e20" },
                             }}
+                            fontSize="medium"
+                            onClick={() =>
+                              navigate(`/ProductDetails/${product?.id}`)
+                            }
                           />
                         </Tooltip>
+
                         <Tooltip title="Add to Favorite">
-                          <FavoriteIcon className=" my-3 fs-2" />
+                          <FavoriteIcon
+                            sx={{
+                              cursor: "pointer",
+                              color: "#ef5350",
+                              "&:hover": { color: "#d32f2f" },
+                            }}
+                            fontSize="medium"
+                          />
                         </Tooltip>
+
                         <Tooltip title="Add to Cart">
                           <AddShoppingCartIcon
-                            className=" my-3 fs-2"
-                            onClick={() => {
-                              cartHandler(product);
+                            sx={{
+                              cursor: "pointer",
+                              color: "#2e7d32",
+                              "&:hover": { color: "#1b5e20" },
                             }}
+                            fontSize="medium"
+                            onClick={() => cartHandler(product)}
                           />
                         </Tooltip>
                       </Box>
-                    </Box>
+                    </CardContent>
                   </Card>
                 </Grid>
               );
             })}
-            ;
           </Grid>
         </Box>
       )}
