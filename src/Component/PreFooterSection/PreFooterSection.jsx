@@ -5,7 +5,7 @@ export default function PreFooterSection() {
     <Box
       sx={{
         width: "100%",
-        minHeight: "100vh", // full laptop screen
+        minHeight: "100vh",
         backgroundImage: `url("https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1600&q=80")`, // sample bg image
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -16,7 +16,6 @@ export default function PreFooterSection() {
         px: 3,
       }}
     >
-      {/* Overlay color */}
       <Box
         sx={{
           position: "absolute",
@@ -24,17 +23,15 @@ export default function PreFooterSection() {
           left: 0,
           width: "100%",
           height: "100%",
-          bgcolor: "rgba(56, 142, 60, 0.7)", // MUI green overlay with opacity
+          bgcolor: "rgba(56, 142, 60, 0.7)",
           zIndex: 1,
         }}
       />
-
-      {/* Content */}
       <Box
         sx={{
           position: "relative",
           zIndex: 2,
-          bgcolor: "rgba(255,255,255,0.9)", // semi-transparent white card
+          bgcolor: "rgba(255,255,255,0.9)",
           width: "100%",
           maxWidth: "800px",
           py: 6,
@@ -44,7 +41,12 @@ export default function PreFooterSection() {
           textAlign: "center",
         }}
       >
-        <Typography variant="h3" fontWeight="bold" color="success.main" gutterBottom>
+        <Typography
+          variant="h3"
+          fontWeight="bold"
+          color="success.main"
+          gutterBottom
+        >
           Stay Connected With Us
         </Typography>
         <Typography

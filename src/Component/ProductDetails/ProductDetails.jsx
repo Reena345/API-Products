@@ -78,29 +78,24 @@ const ProductDetails = () => {
                 >
                   {productDetail?.category}
                 </Typography>
-
                 <Typography variant="h5" fontWeight="bold" gutterBottom>
                   {productDetail?.title}
                 </Typography>
-
                 <Typography
                   variant="body1"
                   sx={{ mb: 2, color: "text.secondary" }}
                 >
                   {productDetail?.description}
                 </Typography>
-
                 <Box display="flex" alignItems="center" sx={{ mb: 2 }}>
                   <Rating value={4} readOnly sx={{ color: "gold" }} />
                   <Typography sx={{ ml: 2 }} fontWeight="bold">
                     ${productDetail?.price}
                   </Typography>
                 </Box>
-
                 <Typography variant="body2" sx={{ mb: 3 }}>
                   Available: {productDetail?.rating?.count || "In stock"}
                 </Typography>
-
                 <Box display="flex" gap={2}>
                   <Button
                     variant="outlined"

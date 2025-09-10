@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Button, Container } from "@mui/material";
 
 import HeroImage from "../assets/download.jpeg";
@@ -18,7 +17,6 @@ const HeroSection = () => {
         color: "#fff",
       }}
     >
-      {/* Green Overlay */}
       <Box
         sx={{
           position: "absolute",
@@ -30,8 +28,6 @@ const HeroSection = () => {
           zIndex: 1,
         }}
       />
-
-      {/* Content */}
       <Container sx={{ position: "relative", zIndex: 2, textAlign: "center" }}>
         <Typography
           variant="h2"

@@ -30,16 +30,28 @@ const Footer = () => {
             <Typography variant="h6" gutterBottom>
               Quick Links
             </Typography>
-            <Typography variant="body2" sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}>
+            <Typography
+              variant="body2"
+              sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}
+            >
               Home
             </Typography>
-            <Typography variant="body2" sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}>
+            <Typography
+              variant="body2"
+              sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}
+            >
               About
             </Typography>
-            <Typography variant="body2" sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}>
+            <Typography
+              variant="body2"
+              sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}
+            >
               Products
             </Typography>
-            <Typography variant="body2" sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}>
+            <Typography
+              variant="body2"
+              sx={{ cursor: "pointer", "&:hover": { color: "lightgreen" } }}
+            >
               Contact
             </Typography>
           </Grid>
@@ -53,16 +65,24 @@ const Footer = () => {
             <Typography variant="body2">📧 support@cardshop.com</Typography>
             <Typography variant="body2">📞 +92 300 1234567</Typography>
             <Box sx={{ mt: 2 }}>
-              <IconButton sx={{ color: "white", "&:hover": { color: "lightgreen" } }}>
+              <IconButton
+                sx={{ color: "white", "&:hover": { color: "lightgreen" } }}
+              >
                 <Facebook />
               </IconButton>
-              <IconButton sx={{ color: "white", "&:hover": { color: "lightgreen" } }}>
+              <IconButton
+                sx={{ color: "white", "&:hover": { color: "lightgreen" } }}
+              >
                 <Twitter />
               </IconButton>
-              <IconButton sx={{ color: "white", "&:hover": { color: "lightgreen" } }}>
+              <IconButton
+                sx={{ color: "white", "&:hover": { color: "lightgreen" } }}
+              >
                 <LinkedIn />
               </IconButton>
-              <IconButton sx={{ color: "white", "&:hover": { color: "lightgreen" } }}>
+              <IconButton
+                sx={{ color: "white", "&:hover": { color: "lightgreen" } }}
+              >
                 <Instagram />
               </IconButton>
             </Box>
@@ -70,7 +90,12 @@ const Footer = () => {
         </Grid>
 
         {/* Bottom Line */}
-        <Box textAlign="center" pt={4} mt={4} borderTop="1px solid rgba(255,255,255,0.2)">
+        <Box
+          textAlign="center"
+          pt={4}
+          mt={4}
+          borderTop="1px solid rgba(255,255,255,0.2)"
+        >
           <Typography variant="body2">
             © {new Date().getFullYear()} Card Shop. All rights reserved.
           </Typography>

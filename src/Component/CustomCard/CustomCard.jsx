@@ -8,53 +8,52 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import HeroImage1 from "../assets/download.jpeg";
+// backgroundImage: `url(${HeroImage})`,
 
 const products = [
-  
-  
-    {
-      id: 1,
-      title: "Trendy Dress",
-        price: "$70.00",
-      description: "New Arrival for Girls",
-      image: "https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      id: 2,
-      title: "Men's Shirt",
-        price: "$50.00",
-      description: "Casual Cotton Shirt",
-      image: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
-    {
-      id: 3,
-      title: "Classic Saree",
-        price: "$30.00",
-      description: "Traditional Collection",
-      image: "https://images.pexels.com/photos/6311580/pexels-photo-6311580.jpeg?auto=compress&cs=tinysrgb&w=600",
-    },
+  {
+    id: 1,
+    title: "Trendy Dress",
+    price: "$70.00",
+    description: "New Arrival for Girls",
+    image:
+      "https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: 2,
+    title: "Men's Shirt",
+    price: "$50.00",
+    description: "Casual Cotton Shirt",
+    image:
+      "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: 3,
+    title: "Classic Saree",
+    price: "$30.00",
+    description: "Traditional Collection",
+    image:
+      "https://images.pexels.com/photos/6311580/pexels-photo-6311580.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
   {
     id: 4,
     title: "Classic Jeans",
     price: "$40.00",
-    image:
-      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500",
+    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500",
   },
   {
     id: 5,
     title: "Elegant Dress",
     price: "$55.00",
-    image:
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500",
+    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500",
   },
   {
     id: 6,
     title: "Trendy Jacket",
     price: "$60.00",
-    image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500",
-  }
-
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500",
+  },
 ];
 
 const FeaturedCards = () => {
@@ -75,7 +74,8 @@ const FeaturedCards = () => {
           textAlign="center"
           sx={{ mb: 5, color: "text.secondary" }}
         >
-          Explore the latest trends in fashion – carefully selected just for you.
+          Explore the latest trends in fashion – carefully selected just for
+          you.
         </Typography>
 
         <Grid container spacing={4} justifyContent="center">

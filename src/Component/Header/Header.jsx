@@ -68,11 +68,11 @@ export default function Header() {
   const [cartOpen, setCartOpen] = React.useState(false);
   const [cartItems, setCartItems] = React.useState([]);
 
-  // 🔹 LocalStorage se cart items fetch karna
+  // 🔹 LocalStorage  cart items fetch
   React.useEffect(() => {
     const storedItems = JSON.parse(localStorage.getItem("cartList")) || [];
     setCartItems(storedItems);
-  }, [cartOpen]); // jab drawer open hoga, tab reload hoga
+  }, [cartOpen]); //  drawer open
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -206,10 +206,9 @@ export default function Header() {
       {renderMenu}
 
       {/* Drawer for Cart */}
-      <Drawer  anchor="right" open={cartOpen} onClose={toggleCartDrawer(false)}>
-        <Box  sx={{ width: 400 }} role="presentation">
+      <Drawer anchor="right" open={cartOpen} onClose={toggleCartDrawer(false)}>
+        <Box sx={{ width: 400 }} role="presentation">
           {" "}
-          {/* 🔹 Drawer width badha diya */}
           <Typography
             color="white"
             variant="h6"

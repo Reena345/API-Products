@@ -28,7 +28,7 @@ function HeroSection() {
   const navigate = useNavigate();
   const [isLording, setIsLording] = useState(false);
 
-  // ✅ Cart handler with localStorage support
+  //  Cart handler with localStorage support
   const cartHandler = (product) => {
     const isExist = cartList.find((cart) => cart.id === product.id);
 
@@ -48,7 +48,7 @@ function HeroSection() {
     setOpenAlert(false);
   };
 
-  // ✅ Fetch products
+  //  Fetch products
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,7 +67,7 @@ function HeroSection() {
     };
     fetchData();
 
-    // ✅ Load cartList from localStorage
+    //  Load cartList from localStorage
     const savedCart = JSON.parse(localStorage.getItem("cartList")) || [];
     setcartList(savedCart);
   }, []);
@@ -101,41 +101,39 @@ function HeroSection() {
         />
       </Snackbar>
 
-      {/* 🔍 Search Bar (Autocomplete) */}
+      {/*  Search Bar (Autocomplete) */}
       <Autocomplete
-  className="my-5 ms-4"
-  disablePortal
-  options={products.map((p) => p.title)} // API product titles
-  sx={{ width: 300 }}
-  renderInput={(params) => (
-    <TextField
-      {...params}
-      label="Search Product"
-      sx={{
-        "& .MuiOutlinedInput-root": {
-          "& fieldset": {
-            borderColor: "green", // Default outline color
-          },
-          "&:hover fieldset": {
-            borderColor: "darkgreen", // On hover
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "green", // On focus
-            borderWidth: 2,
-          },
-        },
-        "& .MuiInputLabel-root": {
-          color: "green", // Label color
-        },
-        "& .MuiInputLabel-root.Mui-focused": {
-          color: "darkgreen", // Label color on focus
-        },
-      }}
-    />
-  )}
-/>
-
-
+        className="my-5 ms-4"
+        disablePortal
+        options={products.map((p) => p.title)}
+        sx={{ width: 300 }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Search Product"
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "green",
+                },
+                "&:hover fieldset": {
+                  borderColor: "darkgreen",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "green",
+                  borderWidth: 2,
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "green",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "darkgreen",
+              },
+            }}
+          />
+        )}
+      />
       {isLording ? (
         <Box className="text-center mt-5">
           <CircularProgress color="secondary" />
@@ -156,14 +154,14 @@ function HeroSection() {
                       transition: "transform 0.3s ease, box-shadow 0.3s ease",
                       "&:hover": {
                         transform: "translateY(-6px)",
-                        boxShadow: "0 8px 25px rgba(0, 128, 0, 0.2)", // greenish shadow
+                        boxShadow: "0 8px 25px rgba(0, 128, 0, 0.2)",
                       },
                     }}
                   >
                     {/* Image Section */}
                     <Box
                       sx={{
-                        backgroundColor: "#f0fdf4", // light green tint
+                        backgroundColor: "#f0fdf4",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
@@ -189,7 +187,7 @@ function HeroSection() {
                           variant="h6"
                           sx={{
                             fontWeight: 600,
-                            color: "#2e7d32", // dark green
+                            color: "#2e7d32",
                             mb: 1,
                           }}
                         >
@@ -205,7 +203,6 @@ function HeroSection() {
                       >
                         ${product.price}
                       </Typography>
-
                       <Divider
                         sx={{ borderColor: "rgba(0,128,0,0.3)", my: 1 }}
                       />
@@ -231,7 +228,6 @@ function HeroSection() {
                             }
                           />
                         </Tooltip>
-
                         <Tooltip title="Add to Favorite">
                           <FavoriteIcon
                             sx={{
@@ -242,7 +238,6 @@ function HeroSection() {
                             fontSize="medium"
                           />
                         </Tooltip>
-
                         <Tooltip title="Add to Cart">
                           <AddShoppingCartIcon
                             sx={{
